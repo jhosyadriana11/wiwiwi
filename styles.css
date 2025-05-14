@@ -1,0 +1,190 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom right, #d2d5ff, #fc9ff1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Arial', cursive;
+  position: relative;
+}
+
+.hearts-bg::before {
+  content: " 💞 💞 💞 💞 💞 💞 💞 💞";
+  font-size: 40px;
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  animation: floatHearts 5s linear infinite;
+  opacity: 0.3;
+  transform: translateX(-50%);
+}
+
+@keyframes floatHearts {
+  0% { top: -20%; opacity: 0.3; }
+  100% { top: 120%; opacity: 0; }
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  width: 90%;
+  max-width: 320px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  background: linear-gradient(45deg, #ffe600, #ffcc00);
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #444;
+}
+
+.hidden {
+  display: none;
+}
+
+.minion {
+  width: 100px;
+  height: 130px;
+  background: #ffe600;
+  border: 3px solid #333;
+  border-radius: 50% 50% 30% 30%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.goggle {
+  width: 40px;
+  height: 40px;
+  background: #ccc;
+  border: 3px solid #444;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gogglerectangle{
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  top: 34px;
+  left: -3px;
+  background-color: black;
+}
+
+.eye {
+  width: 22px;
+  height: 22px;
+  background: rgb(132, 101, 217);
+  border-radius: 50%;
+}
+
+.pupil {
+  width: 15px;
+  height: 15px;
+  background: rgb(0, 0, 0);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.mouth {
+  width: 40px;
+  height: 20px;
+  border-bottom: 5px solid #333;
+  position: absolute;
+  bottom: 15px;
+  left: 28px;
+  border-radius: 0 0 50% 50%;
+}
+
+.kiss {
+  position: absolute;
+  bottom: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  opacity: 0;
+  animation: kissAnim 3s infinite;
+  z-index: 1;
+}
+
+@keyframes kissAnim {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.5);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-50%, -50px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -100px) scale(1.2);
+  }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .minion {
+    transform: scale(0.9);
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
+#surprise.hidden ~ .kiss {
+  display: none;
+}
+
+.party-emoji {
+  position: fixed;
+  font-size: 24px;
+  z-index: 999;
+  pointer-events: none;
+  animation: explode 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1.5);
+    opacity: 0;
+  }
+}
